@@ -1,5 +1,4 @@
 import Sale from '../schemas/sale'
-import Product from '../schemas/product'
 
 const SaleHandler = {
   index: async (req, res) => {

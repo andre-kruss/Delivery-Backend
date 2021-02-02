@@ -9,12 +9,17 @@ const ProductHandler = {
   },
 
   post: async (req, res) => {
-    const data = await Product.create(req.body)
-    await Store.findByIdAndUpdate(data.store, {
-      $push: { products: data },
-    })
+    try {
+      const data = await Product.create(req.body)
+      await Store.findByIdAndUpdate(data.store, {
+        $push: { products: data },
+      })
 
-    return res.json(data)
+      return res.json(data)
+    } catch (err) {
+      console.log(err)
+      return res.json({ data: 'Server Error' })
+    }
   },
 
   show: async (req, res) => {},

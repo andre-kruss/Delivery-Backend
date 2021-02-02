@@ -4,13 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node .src/server.js",
     "dev": "nodemon --exec sucrase-node ./src/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.11.14"
+    "mongoose": "^5.11.14",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "eslint": "^7.18.0",
