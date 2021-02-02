@@ -20,5 +20,6 @@
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "sucrase": "^3.17.0"
-  }
+  },
+  "type": "module"
 }
