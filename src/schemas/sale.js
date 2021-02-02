@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose'
 
 const deliverySchema = new mongoose.Schema({
   client_name: String,
-  client_phone: Number,
+  client_phone: String,
   postal_code: String,
   street: String,
   city: String,
@@ -11,12 +11,7 @@ const deliverySchema = new mongoose.Schema({
 const SaleSchema = new mongoose.Schema({
   date: Date,
   total_price: Number,
-  products: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Product',
-    },
-  ],
+  products: Array,
   store: {
     type: Schema.Types.ObjectId,
     ref: 'Store',

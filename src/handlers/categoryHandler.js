@@ -1,10 +1,16 @@
+import Category from '../schemas/category'
+
 const CategoryHandler = {
   index: async (req, res) => {
-    return res.status(200).json({ data: 'index' })
+    const data = await Category.find({})
+
+    return res.json(data)
   },
 
   post: async (req, res) => {
-    return res.status(200).json({ data: 'post' })
+    const data = await Category.create(req.body)
+
+    return res.json(data)
   },
 
   show: async (req, res) => {},
