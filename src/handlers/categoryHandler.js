@@ -1,4 +1,6 @@
 import Category from '../schemas/category'
+import Store from '../schemas/store'
+
 import * as Yup from 'yup'
 
 const CategoryHandler = {
@@ -13,6 +15,7 @@ const CategoryHandler = {
       const schema = Yup.object().shape({
         name: Yup.string().required(),
         external_id: Yup.string().required(),
+        store: Yup.string().required(),
       })
 
       if (!(await schema.isValid(req.body))) {
@@ -20,6 +23,9 @@ const CategoryHandler = {
       }
 
       const data = await Category.create(req.body)
+      await Store.findByIdAndUpdate(data.store, {
+        $push: { categories: data },
+      })
 
       return res.json(data)
     } catch (err) {

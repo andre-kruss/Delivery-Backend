@@ -9,10 +9,10 @@ const StoreSchema = new mongoose.Schema({
   latitude: Number,
   longitude: Number,
   range: Number,
-  products: [
+  categories: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Product',
+      ref: 'Category',
     },
   ],
 })

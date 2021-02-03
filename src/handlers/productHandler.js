@@ -1,5 +1,6 @@
 import Product from '../schemas/product'
 import Store from '../schemas/store'
+import Category from '../schemas/category'
 
 const ProductHandler = {
   index: async (req, res) => {
@@ -12,6 +13,9 @@ const ProductHandler = {
     try {
       const data = await Product.create(req.body)
       await Store.findByIdAndUpdate(data.store, {
+        $push: { products: data },
+      })
+      await Category.findByIdAndUpdate(data.category, {
         $push: { products: data },
       })
 

@@ -15,7 +15,10 @@ const StoreHandler = {
 
   show: async (req, res) => {
     console.log(req.params)
-    const data = await Store.findById(req.params.id)
+    const data = await Store.findById(req.params.id).populate({
+      path: 'categories',
+      populate: { path: 'products' },
+    })
 
     if (!data) {
       return res.json({
