@@ -12,9 +12,6 @@ const ProductHandler = {
   post: async (req, res) => {
     try {
       const data = await Product.create(req.body)
-      await Store.findByIdAndUpdate(data.store, {
-        $push: { products: data },
-      })
       await Category.findByIdAndUpdate(data.category, {
         $push: { products: data },
       })
