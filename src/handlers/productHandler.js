@@ -1,5 +1,4 @@
 import Product from '../schemas/product'
-import Store from '../schemas/store'
 import Category from '../schemas/category'
 
 const ProductHandler = {

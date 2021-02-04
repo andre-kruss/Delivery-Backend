@@ -2,6 +2,7 @@ import express from 'express'
 import routes from './routes'
 import database from './config/mongo'
 import mongoose from 'mongoose'
+import cors from 'cors'
 
 class App {
   constructor() {
@@ -18,6 +19,7 @@ class App {
 
   middlewares() {
     this.server.use(express.json())
+    this.server.use(cors())
   }
 
   routes() {

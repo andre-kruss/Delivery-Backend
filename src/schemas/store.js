@@ -6,9 +6,11 @@ const StoreSchema = new mongoose.Schema({
   external_id: String,
   street: String,
   city: String,
-  latitude: Number,
-  longitude: Number,
+  latitude: String,
+  longitude: String,
   range: Number,
+  main_photo_url: String,
+  photos: Array,
   categories: [
     {
       type: Schema.Types.ObjectId,

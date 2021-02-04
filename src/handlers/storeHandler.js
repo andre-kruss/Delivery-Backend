@@ -2,7 +2,7 @@ import Store from '../schemas/store'
 
 const StoreHandler = {
   index: async (req, res) => {
-    const data = await Store.find({}).populate('products')
+    const data = await Store.find({}).populate('categories')
 
     return res.json(data)
   },
@@ -14,23 +14,28 @@ const StoreHandler = {
   },
 
   show: async (req, res) => {
-    console.log(req.params)
-    const data = await Store.findById(req.params.id).populate({
-      path: 'categories',
-      populate: { path: 'products' },
-    })
+    try {
+      const data = await Store.findOne({ name: req.params.id }).populate({
+        path: 'categories',
+        populate: { path: 'products' },
+      })
 
-    if (!data) {
-      return res.json({
-        message: 'Store not found',
+      if (!data) {
+        return res.json({
+          message: 'Store not found',
+        })
+      }
+
+      return res.json(data)
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({
+        message: 'Server Error',
       })
     }
-
-    return res.json(data)
   },
 
   getStoreByExternalId: async (req, res) => {
-    console.log(req.params)
     const data = await Store.findOne({ external_id: req.params.id })
 
     if (!data) {
