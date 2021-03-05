@@ -11,6 +11,7 @@ const StoreSchema = new mongoose.Schema({
   range: Number,
   main_photo_url: String,
   photos: Array,
+  formas_pagamento: Array,
   categories: [
     {
       type: Schema.Types.ObjectId,
